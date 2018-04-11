@@ -1,0 +1,72 @@
+
+
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<h3> c a t e g o r y  -  l i s t </h3>
+<hr>
+
+<div id='category' style = 'width:80%'>
+
+    <div 
+        id ='addnewcategory'
+        style="
+        margin:5px;
+        border-radius:10px;
+        border-style:solid;
+        border-color:red;
+        float:left;
+        padding:12px;
+        color:00aeff;  font-size:34px " >
+            <span  class="glyphicon glyphicon-plus"></span>
+    </div>
+    {% for object in object_list %}
+    <div class='category_item' id ="{{object.id}}"> 
+            {{object.name}}
+        </div>
+    {% endfor %}
+</div>
+
+
+<div class='modal fade' id='category-box' role='dialog'>
+     <div class='modal-dialog' id='category-modal'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h6 class='modal-title'> Category </h6>
+            </div>
+            <div id='modal-temp-category' class='modal-body'>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script >
+
+    $("#addnewcategory").on('click',function(){
+    
+        var id = $(this).attr('id')
+        $('.modal-body').load('/foodcategory/add/')
+        $('#category-box').modal('toggle')
+    });
+
+    $("#category").on('click','.category_item',function(){
+    
+        var id = $(this).attr('id')
+        window.location="/foodcategory/update/"+id
+    });
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+

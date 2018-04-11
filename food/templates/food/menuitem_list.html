@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+
+<center>
+    
+    
+    
+{% block content %} <div class='modal fade' id='imagebox' role='dialog'>
+
+ <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h6 class='modal-title'> Image View </h6>
+            </div>
+            <div id='modal-temp-image' class='modal-body'>
+            </div>
+            <div class='modal-footer'>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class='modal fade' id='delete-box' role='dialog'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h6 class='modal-title'> Delete Item Confirm </h6>
+            </div>
+            <div id='modal-temp-delete-body' class='modal-body'>
+            </div>
+            <div class='modal-footer'>
+                <button id='delete-confirm' type='button' class='btn btn-default' > Delete</button>
+                <button data-dismiss='modal' type='button' class='btn btn-default' >Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<table style= 'width:70%' class='table table-hover' >
+    <caption><b> Menu Item List <b> 
+        <button class='btn'  style ='font-size:15;padding-left:2%;color:green; ' href=""  data-target='#addnewbox' data-toggle='modal'>
+            <span class='glyphicon glyphicon-plus'>
+        </button>
+        <button  class= 'btn' style ='font-size:15;padding-left:2%;color:green; ' href="">
+            <span class='glyphicon glyphicon-search'>
+        </button>
+         <button class='btn'  style ='font-size:15;padding-left:2%;color:green; ' href="">
+            <span class='glyphicon glyphicon-cog'>
+        </button>
+          </caption>
+    <thead>
+        <tr>
+            <th>No</th><th>name</th> <th>price</th> <th>category</th> <th>image</th><th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for menu in object_list %}
+    <tr> 
+        <td id='table-index' data='{{menu.id}}' dataname='{{menu.name}}'>{{menu.id}}</td>
+        <td id='item-name{{menu.id}}'>{{menu.name}}</td>
+       <td>{{menu.price}}</td>
+       <td>{% for cat in menu.category.all %}
+               {{ cat.name }} , 
+           {% endfor %}  </td>
+
+       <td id= 'camera'>
+           <button type='button' class='btn' id='camera-btn'  title='view item image'
+               data-toggle='tooltip'  xdata='media/{{menu.image }}'>
+               <span class='glyphicon glyphicon-camera'  ></span>
+           </button>
+           </td>
+       <td id='action-btn'  data={{menu.id}}> 
+           <button type='button' class='btn' id='trash-btn'  title='delete item' data-toggle='tooltip'  >
+               <span  class='glyphicon glyphicon-trash'></span>
+           </button>
+           <a style='text-decoration:none' href='../../menu/update/{{menu.id}}/'>
+               <button type='button' class='btn' id='edit-btn' title='edit item' data-toggle='tooltip'>
+               <span  class='glyphicon glyphicon-edit'></span>
+               </button>
+           </a>
+           <button action-val={% if menu.locked %}
+                         '1'
+                          class='btn action-btn-on'
+                         {% else %}
+                         '0' class='btn'
+                         {% endif %}
+            type='button'  id='lock-btn' title='set item to not available' data-toggle='tooltip'>
+               <span  class='glyphicon glyphicon-lock'></span>
+           </button>
+           <area alt='set to favourite'>
+           <button action-val= {% if menu.favourite %}
+                         '1'
+                          class='btn action-btn-on'
+                         {% else %}
+                         '0' class='btn'
+                         {% endif %}
+              type='button'  id='star-btn' title='set item to favourite' data-toggle='tooltip'> 
+               <span  class='glyphicon glyphicon-star'></span>
+           </button>
+           </area>
+      </td>
+   </tr>
+   </tbody>
+{% endfor %}
+</table>
+<br>
+{% endblock %}
+
+</center>
+
+
+
+
+
+
+
+{% block modal_title %} 
+Add New Menu Item
+{% endblock %}
+
+{% block modal_body %} 
+<form enctype='multipart/form-data' method='POST' action='../../menu/add/'>
+{{ form.as_p }}
+{% csrf_token %}
+<input type='submit'>
+</input>
+</form>
+
+<script >
+
+
+    
+$(' #action-btn').on('click','#star-btn',
+function(){
+        var index =$(this).closest('td').attr('data')
+        var element=$(this)
+        $.ajax({
+            async:true,
+            url:'/menu/update-ajax/'+index+'/',
+            type:'POST',
+            data:{
+                favourite:element.attr('action-val'),
+                csrfmiddlewaretoken:$("input[name='csrfmiddlewaretoken']").val()
+            },
+            success:function(json){
+                var val=element.attr('action-val')==0?1:0
+                element.attr('action-val',val)
+            },
+            error:function(err){ }
+    }); 
+    if ($(this).hasClass('action-btn-on')){
+                    $(this).removeClass('action-btn-on');
+                    } else {
+                    $(this).addClass('action-btn-on');}
+});
+
+
+
+$(' #action-btn').on('click','#lock-btn',
+function(){
+        var index =$(this).closest('td').attr('data')
+        var element=$(this)
+        $.ajax({
+            async:true,
+            url:'/menu/update-ajax/'+index+'/',
+            type:'POST',
+            data:{
+                locked:element.attr('action-val'),
+                csrfmiddlewaretoken:$("input[name='csrfmiddlewaretoken']").val()
+            },
+            success:function(json){
+                 var val=element.attr('action-val')==0?1:0
+                 element.attr('action-val',val)
+            },
+            error:function(err){ }
+    }); 
+    
+    if ($(this).hasClass('action-btn-on')){
+                    $(this).removeClass('action-btn-on');
+                    } else {
+                    $(this).addClass('action-btn-on'); }
+ 
+});
+
+
+$(' #camera').on('click','#camera-btn',
+function(){
+    var imgsrc = "../../"+$(this).attr('xdata');
+    $("#temp-image").remove();
+    $("#temp-image").detach();
+    var a=$('<img />');
+    a.on('load',function(){});
+    a.attr('src',imgsrc);
+    a.attr('id','temp-image');
+    a.attr('style','width:500px;height:350px');
+    $('#modal-temp-image').append(a);
+    $('#imagebox').modal('toggle');
+});
+
+
+
+$(' #action-btn').on('click','#trash-btn',
+function(){
+    $('#modal-temp-delete-body').text("");
+    var data =$(this).closest('td').attr('data')
+    var item_name =$("#item-name"+data).text()
+    $('#modal-temp-delete-body').append("Are you sure to delete menu" + "<br><b>"+item_name+"</b>");
+    $('#delete-confirm').click(
+        function(){
+             $.ajax({
+            url:'/menu/delete/'+data,
+            type:'post',
+            success:function(){console.log('deleted');location.reload()},
+            error:function(x,y){console.log('error')}
+            });
+        });
+    $('#delete-box').modal('toggle');
+   });
+
+
+
+$(document).ready(
+function(){$('[data-toggle="tooltip"]').tooltip();});
+
+
+
+
+
+$('#image-change').click(function(){
+    console.log('image change is clicked')
+});
+
+</script>
+
+{% endblock %}
+
+{% block modal_okbtn %} 
+{% endblock %}
+
+
+

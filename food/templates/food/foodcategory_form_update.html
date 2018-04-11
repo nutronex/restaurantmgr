@@ -1,0 +1,14 @@
+
+<form method='POST' action='foodcategory/update/'>
+
+
+{{ form.as_p }}
+<input type='hidden'>{% csrf_token %}
+<input type='submit' text='Add'>
+
+<div class='modal-footer'>
+    <button id='image-change' type='button' class='btn btn-default' >Change image</button>
+    <button data-dismiss='modal' type='button' class='btn btn-default' >Cancel</button>
+            
+</div>
+</form>

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<table style= 'width:70%' class='table table-hover' >
+    <caption><b> Waiter List <b> 
+      <a href="../accountcreate/" style="text-decoration:none">
+        <button class='btn'  style ='font-size:15;padding-left:2%;color:green; ' href=""  data-target='#addnewbox' data-toggle='modal'>
+            <span class='glyphicon glyphicon-plus'>
+        </button>
+    </a>
+        <button  class= 'btn' style ='font-size:15;padding-left:2%;color:green;'  >
+            <span class='glyphicon glyphicon-search'>
+          </caption>
+    <thead>
+        <tr>
+            <th>No</th><th>username</th> <th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+    <tr> 
+        <td id='table-index' data='{{object.id}}' dataname='{{object.name}}'>{{object.id}}</td>
+        <td id='item-name{{object.id}}'>{{object.username}}</td>
+
+       <td id='action-btn'  > 
+           <button type='button' data={{object.id}} class='btn' id='trash-btn'  title='delete user' data-toggle='tooltip'  >
+               <span  class='glyphicon glyphicon-trash'></span>
+           </button>
+      </td>
+   </tr>
+   </tbody>
+{% endfor %}
+</table>
+</div>
+
+<script>
+    $(' #action-btn').on('click','#trash-btn',function(){
+        var id = $(this).attr('data')
+        console.log(id)
+        $.ajax({
+            url:'../accountdelete/',
+            data:{userid:id},
+            type:'post',
+            success:function(data){
+                if (data['status']=="success")   { location.reload() }  
+                else{alert("account delete fail")}
+            },
+            error:function(data){console.log(data)}
+        })
+
+    })
+</script>
+{% endblock %}
+
+
+

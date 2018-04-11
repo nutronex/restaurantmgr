@@ -1,0 +1,48 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel='stylesheet' href = "{% static '/bootstrap.min.css' %}">
+
+        <meta name="viewport" content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no">
+        <style>
+            @font-face{
+                font-family:'Glyphicons Halflings';
+                src:url({% static '/glyphicons-halflings-regular.eot'        %}),
+                src:url('{% static '/glyphicons-halflings-regular.eot?#iefix' %}') format('embedded-opentype'),
+                src:url('{% static '/glyphicons-halflings-regular.woff'       %}') format('woff'),
+                src:url('{% static '/glyphicons-halflings-regular.ttf'        %}') format('truetype'),
+                src:url('{% static '/glyphicons-halflings-regular.svg#glyphicons-Halflingsregular' %}') format('svg'),
+            }
+@font-face{font-family:'Glyphicons Halflings';src:url(../fonts/glyphicons-halflings-regular.eot);src:url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'),url(../fonts/glyphicons-halflings-regular.woff) format('woff'),url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'),url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')}
+        </style>
+
+
+    </head>
+    
+    <body>
+
+        <nav role='navigation' class='navbar navbar-default navbar-inverse'>
+            <div class='navbar-header'>
+                 <a class='navbar-brand' style='color:#00aeff' href='/'> 3D restaurant</a>
+            </div>
+            <div><p class='navbar-text'>restaurant management system</p></div>
+
+            
+                <ul class='nav navbar-right navbar-nav'>
+                    <li><a href="">Logout</a></li>
+                    <li><a href="">Logout</a></li>
+                    <li><a href=""></a></li>
+                </ul>
+        </nav>
+
+        <button class='button button-success'>foo<span class='glyphicon glyphicon-search'></span></button>
+        <center>
+        {% block content %}
+        {% endblock %}
+    
+    </body>
+    <script src="{% static '/bootstrap.min.js'"  %}>
+</html>

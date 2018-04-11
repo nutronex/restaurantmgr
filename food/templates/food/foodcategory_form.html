@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="width:50%">
+
+    <h3>Edit Category  "{{object.name}}"</h3>
+    <hr>
+<form method='POST' >
+{{ form.as_p }}
+<input type='hidden'>{% csrf_token %}
+<div class='modal-footer'>
+    <button  type='submit' class='btn btn-default' >Save</button>
+
+    
+</form>
+
+
+    <div style='background:red;' id='deletecategory' data='{{object.id}}'  class='btn btn-default' >Delete</div> 
+    <a href='../'><button type='button' class='btn btn-default' >Cancel</button> </a>
+</div>
+</div>
+
+<script>
+$(' #deletecategory').on('click',
+function(){
+    var id =$(this).attr('data')
+     $.ajax({
+        url:'/foodcategory/delete/'+id,
+        type:'post',
+        success:function(){console.log('deleted');window.location='/foodcategory/'},
+        error:function(x,y){console.log('error')}
+        });
+    });
+
+</script>
+{% endblock %}
+

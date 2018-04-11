@@ -1,0 +1,15 @@
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\print_bill\print_bill\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\print_bill\print_bill\bin\Debug\print_bill.exe
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\print_bill\print_bill\bin\Debug\print_bill.pdb
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\print_bill\print_bill\obj\Debug\print_bill.exe
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\print_bill\print_bill\obj\Debug\print_bill.pdb
+C:\Users\nutronex\Desktop\django\dj\restaurant\print_bill\print_bill\obj\Debug\print_bill.exe
+C:\Users\nutronex\Desktop\django\dj\restaurant\print_bill\print_bill\obj\Debug\print_bill.pdb
+C:\Users\nutronex\Desktop\django\dj\restaurant\print_bill\print_bill\bin\Debug\print_bill.exe
+C:\Users\nutronex\Desktop\django\dj\restaurant\print_bill\print_bill\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\nutronex\Desktop\django\dj\restaurant\print_bill\print_bill\bin\Debug\print_bill.pdb
+D:\restaurant\print_bill\print_bill\obj\Debug\print_bill.exe
+D:\restaurant\print_bill\print_bill\obj\Debug\print_bill.pdb
+D:\restaurant\print_bill\print_bill\obj\Debug\ResolveAssemblyReference.cache
+D:\restaurant\print_bill\print_bill\bin\Debug\print_bill.exe
+D:\restaurant\print_bill\print_bill\bin\Debug\print_bill.pdb

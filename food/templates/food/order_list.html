@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+<meta http-equiv='refresh' content=120>
+<table style= 'width:70%' class='table table-hover' >
+    <caption><b>paid  Order List  <b> 
+        <a  style ='font-size:15;padding-left:2%;color:green; ' href="">
+            <span class='glyphicon glyphicon-search'>
+        </a>
+         <a  style ='font-size:15;padding-left:2%;color:green; ' href="">
+            <span class='glyphicon glyphicon-cog'>
+        </a>
+          </caption>
+    <thead>
+        <tr>
+            <th>No</th><th>Voucher</th> <th>Table</th> <th>Item</th> <th>Count</th><th>Date</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody style="font-size:15px">
+    {% for order in object_list %}
+    <tr {% if order.paid == False %}style="background:#ffc0c0"{%endif%} id='orderitem' datatable='{{order.table}}'  data='{{order.billid}}'> 
+       <td >{{order.id}}</td>
+       <td >{{order.billid}}</td>
+       <td>{{order.table}}</td>
+       <td>{{order.item}}</td>
+       <td>{{order.quantity}}</td>
+       <td>{{order.date|date:"d/m/Y/ | g a"}}</td>
+       <td>{{order.item.price}}</td>
+       <td>{%  widthratio order.quantity  1 order.item.price %}</td>
+
+   </tr>
+{% endfor %}
+   </tbody>
+</table>
+<br>
+
+{% if is_paginated %}
+    {% if page_obj.has_previous %}
+        <a href ='?page={{page_obj.previous_page_number}}'> previous </a>
+    {% endif %}
+    <span>{{page_obj.number}} of {{ paginator.num_pages }} </span>
+    {% if page_obj.has_next %}
+    <a href ='?page={{page_obj.next_page_number}}'> next</a>
+    {% endif %}
+{% endif %}
+
+
+<div class='modal fade' id='billviewmodal' role='dialog'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h6 class='modal-title'> Voucher Bill View </h6>
+            </div>
+            <div  class='modal-body'>
+            </div>
+            <div class='modal-footer'>
+                    <button id='payorder' type='button' class='btn btn-default' >Confirm Payment</button>
+                <button data-dismiss='modal' type='button' class='btn btn-default' >Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    
+    $('tbody').on('click',' #orderitem',function(){
+        //var id = $(this).attr('data')  
+        var id = $(this).attr('datatable')  
+        console.log("this is in o list "+id);
+        var button = $('#payorder')
+        button.attr('href','')
+        var pay_url = '../../billpayment/'
+        
+       // $('.modal-body').load('../../bill/'+id)
+       // $('#billviewmodal').modal('toggle')
+
+        
+        button.click(function(){
+           $.ajax({
+               url:pay_url,
+               type:'POST',
+               data:{pk:id},
+               success:function(data){ 
+                   console.log(data)
+                   if (data['status']==200) location.reload()
+                   else console.log('error')
+               },
+               error:function(error){}
+           
+           })
+       }); 
+    });
+
+</script>
+{% endblock %}
+
+

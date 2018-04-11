@@ -1,0 +1,161 @@
+
+<style type="text/css">
+    .modal-body{
+        width:300px;
+        height:400px;
+    }
+    .dateheader{
+    }
+    .dateheader_li_year {
+    background:orange;
+    font-size:30px;
+    color:white;
+    }
+    .dateheader_ul {
+    padding-left:0px;
+    }
+    .dateheader_ul li{
+        font-size:35px;
+        color:orange;
+        font-style:bold;
+        display:inline;
+        list-style-type:none;
+    }
+    .datedays {
+        padding-left:0px;
+        margin:0px;
+    }
+    .fuck{color:#09425277422;}
+    .datedays li{
+        list-style-type:none;
+        font-size:20px;
+        width:13.8%;
+        padding-top:5px;
+        margin-top:6px;
+        padding-bottom:5px;
+        text-align:center;
+        float:left;
+        cursor:pointer;
+        display:inline-block;
+    }
+
+    .calen_day_active{
+        background:orange;
+        border-radius:25px;
+        color:white;
+        font-weight:bold;
+    }
+    .datedays li:hover{
+        background:#00aeff;
+        border-radius:25px;
+        
+        
+    }
+    .calen_btn{
+        font-size:50px;
+        cursor:pointer;
+        width:10%;
+        float:left;
+
+    }
+    .calen_btn:hover{
+
+        background:#00aeff;
+    }
+
+
+</style>
+
+
+<div class="modal_date_picker modal fade" id="category-box" role="dialog" style="display: none;">
+         <div class="modal-dialog" id="category-modal">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">×</button>
+                     <h6 class="modal-title"> Date picker </h6>
+                 </div>
+             <div class="modal-body dateheader">
+                 <ul class="dateheader_ul">
+                     <li style="float:left;margin-left:30px" class="calen_btn" id="calc_prev_m"> ❮  </li>
+                     <li style="float:right;margin-right:30px" class="calen_btn" id="calc_next_m"> ❯ </li> 
+                     <li class="dateheader_li_month"> may</li> 
+                 </ul> 
+                 <div class="dateheader_li_year">2017</div>
+                 <ul class="datedays"> 
+                     <li class="calen_day_active">1</li> <li>2</li> <li>3</li> <li>4</li> <li>5</li> 
+                     <li>6</li> <li>7</li> <li>8</li> <li>9 </li>
+                     <li>10</li> <li>11</li> <li>12</li> <li>13</li>
+                     <li>14</li> <li>15</li> <li>16</li> <li>17</li>
+                     <li>18</li> <li>19</li> <li>20</li> <li>21</li> 
+                     <li>22</li> <li>23</li> <li>24</li> <li>25</li>
+                     <li>26</li> <li>27</li> <li>28</li> <li>29</li> 
+                     <li>30</li> <li>31</li> 
+                </ul>
+                </div> </div> </div> </div>
+
+
+<div class="input-group" style="width:15%">
+        <input type="text" class="form-control" style="font-size:18px;" id="calwidget_text">
+            <span class="input-group-btn ">
+                <button class="btn btn-default" type="button" id="calwidget">
+               .<span class="glyphicon glyphicon-calendar"> 
+               </span></button>
+           </span>
+</div>
+<button id="btn-search" type="button"  style="width:15% ;margin-top:5px;" class="btn btn-default">search</button>
+
+<script type="text/javascript">
+
+    $("#btn-search").click(function(){
+        var date = $("#calwidget_text").attr("value").trim();
+        console.log(date);
+        if (date != ""){
+        window.location.href="/report/day/"+date;
+        
+        }
+    });
+
+
+    $("#calwidget").click(function(){
+            console.log("fuck");
+            $(".modal_date_picker").modal("toggle");
+            });
+
+    $(".datedays li").click(function(){
+            var id =$(this).text();
+            $(this).siblings(".calen_day_active").removeClass("calen_day_active");
+            $(this).addClass("calen_day_active");
+            var cmonth= months.indexOf($(".dateheader_li_month").text().trim());
+            data = $(".dateheader_li_year").text().trim()  +"/"+cmonth+"/"+id;
+            $("#calwidget_text").attr("value",data);
+            });
+
+
+    var months=["jan","feb","mar","april","may","jun","july","aug","sept","oct","nov","dec"];
+    $(".dateheader_ul li").click(function(){
+            var id = $(this).attr("id");
+            var cmonth= months.indexOf($(".dateheader_li_month").text().trim());
+            var amount=0
+            if(id.trim()=="calc_prev_m") amount=-1;
+            if(id.trim()=="calc_next_m") amount=1;
+            var index=cmonth+amount;
+            var month_index= index;
+            if (index  > 11  ) {
+                month_index = index-12;
+                year = $(".dateheader_li_year");
+                year.text( parseInt(year.text()) + 1);
+                }
+            if (index  < 0   ){ 
+                month_index = index+12;
+                year = $(".dateheader_li_year");
+                year.text( parseInt(year.text()) - 1);
+                }
+
+            $(".dateheader_li_month").text(months[month_index]);
+            data =$(".dateheader_li_year").text().trim()+"/"+(month_index+1)+"/"+ $(".calen_day_active").text().trim();
+            $("#calwidget_text").attr("value",data);
+
+            });
+</script>
+
+

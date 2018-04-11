@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+{% block content %}
+{%include "datepicker.html"%}
+
+{% if data %}
+<table style= 'width:70%' class='table table-hover' >
+    <caption><b> {{date}}  <b> </caption>
+    <thead>
+        <tr>
+            <th>item</th>
+            <th>price</th>
+            <th>quantity</th>
+            <th>total</th>
+        </tr>
+    </thead>
+    <tbody style="font-size:15px">
+        {% for item in data %}
+        <tr>
+           <td >{{item.n}}</td>
+           <td >{{item.p}}</td>
+           <td >{{item.q}}</td>
+           <td> {% widthratio item.q  1 item.p%} </td>
+        </tr>
+        
+        {% endfor %}
+        <tr style="font-weight:bold">
+            <td colspan="2" style="padding-left:20%"> total</td>
+           <td >{{q}}</td>
+           <td >{{p}}</td>
+       </tr>
+ 
+   </tbody>
+</table>
+{% else %}
+<h3>no data found</h3>
+{% endif %}
+<br>
+
+
+
+
+
+
+{% endblock %}

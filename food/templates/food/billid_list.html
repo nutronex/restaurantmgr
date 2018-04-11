@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+<table style= 'width:70%' class='table table-hover' >
+    <caption><b> Bill List <b> 
+        <a  style ='font-size:15;padding-left:2%;color:green; ' href="">
+            <span class='glyphicon glyphicon-search'>
+        </a>
+         <a  style ='font-size:15;padding-left:2%;color:green; ' href="">
+            <span class='glyphicon glyphicon-cog'>
+        </a>
+          </caption>
+    <thead>
+        <tr>
+            <th>No</th><th>Voucher</th> <th>Table</th> <th>Item</th> <th>Count</th><th>Date</th><th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for order in object_list %}
+    <tr> 
+        <td >{{order.id}}</td>
+        <td >{{order.paid}}</td>
+       <td>{{order.order_set.table}}</td>
+       <td>{{order.item}}</td>
+       <td>{{order.quantity}}</td>
+       <td>{{order.date}}</td>
+       <td>{{order.item.price}}</td>
+
+   </tr>
+{% endfor %}
+   </tbody>
+</table>
+<br>
+
+<br>
+{% endblock %}

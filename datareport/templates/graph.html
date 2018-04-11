@@ -1,0 +1,45 @@
+
+ {%load static%}
+<link rel="stylesheet" href="{% static "chartist.min.css" %}">
+
+   
+	
+    <script src="{% static "chartist.min.js" %}"></script>
+       
+       </script>
+	   
+        <div class="ct-chart ct-perfect-fourth" > </div>
+		
+		<style type =" text/css">
+        .ct-series-a .ct-line {
+			stroke:orange;
+		}
+        .ct-point {
+            stroke:blue;
+        }
+    </style>
+        <script type="text/javascript">        
+            var options = {
+                height : 350,
+                showPoint : true,
+                
+                showArea : false,
+                axisX :{
+                showGrid:true,
+                labelInterpolationFnc : function(val){return "day "+val ;},
+                },
+                axisY :{
+                labelInterpolationFnc : function(val){return val + "pcs";},
+                onlyInteger :true, },
+            }
+            var days =[];
+            for (i=0;i<32;i++){days.push(i)}
+            var data = {
+                    labels :{{days}},
+                    series : [ {{qty}}, ]
+            };
+            new Chartist.Line('.ct-chart',data,options);
+
+        </script>
+ 
+

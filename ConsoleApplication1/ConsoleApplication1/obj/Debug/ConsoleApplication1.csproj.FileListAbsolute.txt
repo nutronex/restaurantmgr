@@ -1,0 +1,15 @@
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\nutronex\Documents\Visual Studio 2008\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\nutronex\Desktop\django\dj\restaurant\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\nutronex\Desktop\django\dj\restaurant\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\nutronex\Desktop\django\dj\restaurant\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\nutronex\Desktop\django\dj\restaurant\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\nutronex\Desktop\django\dj\restaurant\ConsoleApplication1\ConsoleApplication1\obj\Debug\ResolveAssemblyReference.cache
+D:\restaurant\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\restaurant\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+D:\restaurant\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\restaurant\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\restaurant\ConsoleApplication1\ConsoleApplication1\obj\Debug\ResolveAssemblyReference.cache

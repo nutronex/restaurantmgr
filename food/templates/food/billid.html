@@ -1,0 +1,28 @@
+<table style="width:70%" class="table table-hover" id="billtablemain">
+    <caption>
+        <b> Voucher no : {{id}} <br>
+                 Date : {% now 'd.m.y - g a ' %} <br>
+                 table : {{table}} </b>
+    </caption>
+
+    <thead>
+    <tr> <th>Item</th><th>Quantity</th> <th>Price</th> <th>Total</th> </tr>
+    </thead>
+                                                                                                                    
+    <tbody id="billtablebody">
+        {% for object in object_list %} 
+        <tr>
+            <td>{{object.n}}</td>
+            <td>{{object.q}}</td>
+            <td>{{object.p}}</td>
+            <td>{% widthratio object.q 1 object.p %}</td>
+        </tr>
+        {% endfor %}
+        <tr style="background:rgb(118,240,235); font-size:large ">
+            <td colspan="3">total :  </td>
+            {% load bill_total %}
+            <td>{{ object_list | sum_bill }}  </td>
+            
+        </tr>
+    </tbody>
+</table>

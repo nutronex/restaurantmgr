@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style='width:50%'>
+<h1>Edit Menu Item</h1>
+<form method='POST' enctype='multipart/form-data' action=''>
+
+{{ form.as_p }}
+<input type='hidden'>{% csrf_token %}
+<input type='submit' text='Save'>
+
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+<html>
+    <head>
+        {% load static %}
+   <link rel='stylesheet' href = "{% static '/bootstrap.min.css' %}">
+   <script src="{% static '/jquery.min.js'  %}"> </script>
+   <script src="{% static '/angular.min.js'  %}"> </script>
+   <script src="{% static '/bootstrap.min.js'  %}"> </script>
+        <meta name="viewport" content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no">
+
+       <style>
+            .action-btn-on{color:orange;}
+            ul>li>a:active {
+                background:red;
+                color:green;
+            }
+
+            @font-face{font-family:'Glyphicons Halflings';
+                src:url({% static '/fonts/glyphicons-halflings-regular.eot' %});
+                src:url({% static '/fonts/glyphicons-halflings-regular.eot?#iefix '%}) format('embedded-opentype'),
+                url({% static '/glyphicons-halflings-regular.woff2' %}) format('woff2'),
+                url({% static 'fonts/glyphicons-halflings-regular.woff' %} ) format('woff'),
+                url({% static '/fonts/glyphicons-halflings-regular.ttf' %}) format('truetype'), url({% static '/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular' %}) format('svg')}
+
+            caption{
+                display: table-caption;
+            }
+
+            .category_item{
+                padding:20px;
+                float:left;
+                border-radius:10px;
+                margin:5px;
+                border-width:2px;
+                font-weight:bold;
+                color:#5f5f5f;
+                border-style:solid;
+                cursor:pointer;
+                border-color:green; }
+
+            .category_item:hover{
+                background:#green;
+                box-shadow: 3px 3px #cfcfcf;
+            }
+        </style>
+
+
+    </head>
+
+    <body>
+
+
+
+
+        <nav role='navigation' class='navbar navbar-default navbar-inverse'>
+            <div class='navbar-header'>
+                 <a class='navbar-brand' style='color:#ff0000' href='/'> Project - n t R</a>
+            </div>
+            <div><p class='navbar-text'>restaurant </p></div>
+
+            <ul class='nav navbar-right navbar-nav'>
+            {%if user.is_authenticated %}
+                    <li><a href="/makeorder/create"> <span class='glyphicon glyphicon-plus'></span></a></li>
+                    <li><a  href="{% url 'category_list_view' %}">Category </a></li>
+                    <li><a href="{% url 'menu_list_view' %}">Item </a></li>
+                    <li><a href="/report">Report </a></li>
+                    <li><a href="{% url 'order_list_view' %}">Order </a></li>
+                    <li><a href="{% url 'order_pending_view' %}">Pending </a></li>
+                    <li><a href="/accountlist/">Account <span class='glyphicon glyphicon-user'></span></a></li>
+                    <li><a href="/logout/">Logout <span class='glyphicon glyphicon-log-out'></span></a></li>
+                    <li><a href=""></a></li>
+                {% else %}
+
+                    <li><a href="/login/">Login <span class='glyphicon glyphicon-log-out'></span></a></li>
+                {%endif%}
+                </ul>
+        </nav>
+
+
+
+
+
+        <center>
+        {% block content %}
+        {% endblock %}
+
+
+<div class='modal fade' id='addnewbox' role='dialog'>
+    <div class='modal-dialog modal-sm'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h6 class='modal-title'>
+                {% block modal_title %}
+                {% endblock %}
+                </h6>
+            </div>
+            <div class='modal-body'>
+                {% block modal_body %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+ </html>
