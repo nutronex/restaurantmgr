@@ -1,5 +1,7 @@
 # restaurantmgr
 
+android client : https://github.com/nutronex/restaurantmgr/blob/master/app-debug.apk
+
 ![alt text](https://github.com/nutronex/restaurantmgr/blob/master/screenshot/Screenshot%20from%202018-04-11%2009:00:40.png)
 
 ![alt text](https://github.com/nutronex/restaurantmgr/blob/master/screenshot/Screenshot%20from%202018-04-11%2009:01:23.png)
